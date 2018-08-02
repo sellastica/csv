@@ -31,8 +31,7 @@ class CsvReaderFactory
 		switch ($encoding) {
 			case 'win1250':
 				//class is not in the vendor namespace
-				$rc = new \Sellastica\Reflection\ReflectionClass(self::class);
-				require_once (dirname($rc->getFileName()) . '/windows1250_to_utf8_filter.php');
+				require_once (__DIR__ . '/windows1250_to_utf8_filter.php');
 
 				if (!stream_filter_register('convert.windows1250_to_utf8', 'windows1250_to_utf8_filter')) {
 					throw new \RuntimeException('Failed to register convert.windows1250_to_utf8 stream filter');
